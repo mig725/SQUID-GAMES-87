@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SQUID GAME 1987</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Código de acceso -->
+  <div id="loginContainer" class="overlay">
+    <div class="loginBox">
+      <h2>Ingresa el código de acceso de su producto</h2>
+      <input type="password" id="accessCode" placeholder="Código" autofocus autocomplete="off"/>
+      <button id="loginBtn">Entrar</button>
+      <p id="loginError" class="errorMsg"></p>
+    </div>
+  </div>
+
+  <!-- Animación logo inicial -->
+  <div id="logoContainer" class="overlay" style="display:none;">
+    <img src="images/LOGO S.png" class="glitch-logo" id="logo" />
+    <p class="glitch-text">Gracias por comprar la llave, le preparé este minijuego que viene incluido con su compra. ¡Disfrute!</p>
+  </div>
+
+  <!-- Logo fijo pequeño -->
+  <div id="fixedLogo" style="display:none;">
+    <img src="images/LOGO S.png" id="smallLogo" />
+  </div>
+
+  <!-- Pestaña informativa -->
+  <div id="infoPopup" class="overlay" style="display:none;">
+    <button class="closeBtn" onclick="closeInfo()">❌</button>
+    <div class="popup-content">
+      <h2>¿QUÉ FUE?</h2>
+      <img src="images/LOGO S.png" class="popup-image" />
+      <p>
+        Fueron la primera edición de los juegos del calamar, en una época
+        donde la pobreza de Corea del Sur estaba muy elevada. Un grupo de
+        personas adineradas decidió crear estos juegos para entretenerse
+        viendo a la gente de la clase baja matarse por dinero. Al ganador le
+        prometían una gran suma. Pero.......
+        ¿Quien creo losjuegos? ¿en que estan inspirados?
+      </p>
+      <p class="popup-text">
+        Selecciona una cámara para ver los detalles. Puedes cerrar la vista
+        haciendo clic en la X.
+      </p>
+    </div>
+  </div>
+
+  <!-- Selector de cámaras -->
+  <div id="camSelector" style="display:none;">
+    <h2>Selecciona una cámara</h2>
+    <div id="mapContainer">
+      <div class="cam" id="cam1" onclick="showCam('images/Jugadores.jpg', 'JUGADORES: Se elegían a personas de la clase baja para jugar entre sí por una recompensa. A veces eran menos de 456 por la dificultad de reclutarlos.')">
+        <img src="images/Jugadores.jpg" alt="Jugadores" />
+        <p>Jugadores</p>
+      </div>
+      <div class="cam" id="cam2" onclick="showCam('images/Sitio 1.jpg', 'RINCÓN 1: Lateral izquierdo del sitio, una de las tantas escaleras al patio principal.')">
+        <img src="images/Sitio 1.jpg" alt="Rincón 1" />
+        <p>Rincón 1</p>
+      </div>
+      <div class="cam" id="cam3" onclick="showCam('images/Sitio 2.jpg', 'SALA DEL PERSONAL: Cuartos en 2 pisos donde dormían los guardias y líderes, y almacenaban recursos.')">
+        <img src="images/Sitio 2.jpg" alt="Sala del Personal" />
+        <p>Sala del Personal</p>
+      </div>
+      <div class="cam" id="cam4" onclick="showCam('images/Sitio 3.jpg', 'HABITACIONES: Donde dormían los jugadores, con camas de madera barata que solían romperse.')">
+        <img src="images/Sitio 3.jpg" alt="Habitaciones" />
+        <p>Habitaciones</p>
+      </div>
+      <div class="cam" id="cam5" onclick="showCam('images/Sitio 4.jpg', 'PASILLO A HABITACIONES: Pasillo con muchas escaleras para acceder a las habitaciones, usado como escape nocturno.')">
+        <img src="images/Sitio 4.jpg" alt="Pasillo a Habitaciones" />
+        <p>Pasillo a Habitaciones</p>
+      </div>
+      <div class="cam" id="cam6" onclick="showCam('images/Sitio 5.jpg', 'PATIO PRINCIPAL: Lugar donde se jugaban la mayoría de los juegos. La muñeca era de arcilla y se movía manualmente.')">
+        <img src="images/Sitio 5.jpg" alt="Patio Principal" />
+        <p>Patio Principal</p>
+      </div>
+      <div class="cam" id="cam7" onclick="showCam('images/Sitio 6.jpg', 'BAÑOS: En el subsuelo, divididos en dos pisos. Algunas veces usados para intentar escapar por el drenaje.')">
+        <img src="images/Sitio 6.jpg" alt="Baños" />
+        <p>Baños</p>
+      </div>
+    </div>
+    <button onclick="openInvestigations()">🕵️‍♂️ MIS INVESTIGACIONES</button>
+    <button onclick="openMystery()">🧩 RESUELVE EL MISTERIO</button>
+   <button onclick="toggleMusic()">🔊 Música</button>
+  </div>
+
+  <!-- Visor grande -->
+  <div id="camViewer" class="overlay" style="display:none;">
+    <button class="closeBtn" onclick="closeCam()">❌</button>
+    <img id="fullImage" src="" />
+    <p id="camText"></p>
+  </div>
+
+  <!-- Preguntas -->
+  <div id="investigations" class="overlay" style="display:none;">
+    <button class="closeBtn" onclick="closeInvestigations()">❌</button>
+    <h2>Mis Investigaciones</h2>
+    <div id="questionsContainer"></div>
+  </div>
+
+  <!-- Popup de letra -->
+  <div id="letterPopup" class="overlay" style="display:none;">
+    <button class="closeBtn" onclick="closeLetterPopup()">❌</button>
+    <h2>¡Correcto!</h2>
+    <p id="letterPopupText"></p>
+  </div>
+
+  <!-- Popup de error -->
+  <div id="errorPopup" class="overlay" style="display:none;">
+    <button class="closeBtn" onclick="closeErrorPopup()">❌</button>
+    <h2>Incorrecto</h2>
+    <p id="errorPopupText"></p>
+  </div>
+
+  <!-- Resolver el misterio -->
+  <div id="mystery" class="overlay" style="display:none;">
+    <button class="closeBtn" onclick="closeMystery()">❌</button>
+    <h2>RESUELVE EL MISTERIO DE LOS JUEGOS</h2>
+    <div id="letterSlots"></div>
+    <div id="slotNumbers"></div>
+    <button onclick="checkMystery()">Verificar</button>
+    <p id="mysteryMsg"></p>
+  </div>
+
+  <!-- Popup final -->
+  <div id="finalPopup" class="overlay" style="display:none;">
+    <button class="closeBtn" onclick="closeFinal()">❌</button>
+    <h2>¡RESOLVISTE EL MISTERIO!</h2>
+    <img src="images/Muñeca y muñeco.jpg" alt="Felicitaciones" />
+    <p>Has logrado descubrir la verdad detrás del juego. OH LL-NAM es el creador de los juegos pensando en como jugaba el y sus amigos en su infancia, su mejor amiga es la muñeca y el es el otro muñeco cuando era un niño. ¡Felicidades!</p>
+  </div>
+
+  <!-- Música -->
+ <button onclick="toggleMute()">🔇 Mute</button>
+ <audio id="bgMusic" src="audio/tu-musica.mp3" loop></audio>
+ <script src="script.js"></script>
+</body>
+</html>

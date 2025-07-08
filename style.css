@@ -1,0 +1,390 @@
+/* Reset */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: black;
+  background-image: url("images/FONDO.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  font-family: monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 10px;
+  overflow-x: hidden;
+}
+
+/* Overlay base para modales y ventanas */
+.overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+/* Botón cerrar común */
+.closeBtn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 22px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Login */
+.loginBox {
+  background: #222;
+  padding: 30px 40px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+  box-shadow: 0 0 20px #fff;
+}
+
+.loginBox input {
+  width: 100%;
+  padding: 12px;
+  margin: 15px 0;
+  border-radius: 6px;
+  border: none;
+  font-size: 18px;
+  text-align: center;
+}
+
+.loginBox button {
+  padding: 12px 25px;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: #222;
+  border: 2px solid white;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.loginBox button:hover {
+  background-color: #444;
+}
+
+.errorMsg {
+  color: #f44336;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Logo animado inicial */
+#logoContainer {
+  text-align: center;
+}
+
+.glitch-logo {
+  width: 250px;
+  max-width: 80%;
+  animation: glitch 1s infinite;
+  margin-bottom: 10px;
+}
+
+.glitch-text {
+  font-size: 18px;
+  animation: glitch 1s infinite;
+  color: white;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+/* Animación glitch */
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-1px, 1px); }
+  80% { transform: translate(1px, -1px); }
+  100% { transform: translate(0); }
+}
+
+/* Logo pequeño fijo */
+#fixedLogo {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 80px;
+  z-index: 1000;
+}
+
+#fixedLogo img {
+  width: 100%;
+  height: auto;
+}
+
+/* Popup info */
+.popup-content {
+  max-width: 600px;
+  text-align: center;
+}
+
+.popup-image {
+  width: 150px;
+  margin-bottom: 10px;
+}
+
+/* Selector cámaras */
+#mapContainer {
+  position: relative;
+  width: 800px;
+  height: 500px;
+  margin: 20px auto 40px auto;
+  background: white;
+  border: 2px solid white;
+  border-radius: 10px;
+  z-index: 1;
+  box-shadow: 0 0 15px white;
+}
+
+/* Posiciones cámaras estilo mapa FNAF, blancas y líneas */
+.cam {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: white;
+  text-align: center;
+  color: black;
+  font-size: 14px;
+  z-index: 10;
+  user-select: none;
+  box-shadow: 0 0 10px black inset;
+}
+
+.cam img {
+  width: 100%;
+  height: 70px;
+  object-fit: cover;
+  border-bottom: 1px solid black;
+  display: block;
+}
+
+.cam p {
+  margin: 5px 0 0 0;
+}
+
+/* Posiciones estilo mapa (el mismo orden que antes) */
+#cam1 { top: 30px; left: 50px; }
+#cam2 { top: 30px; left: 320px; }
+#cam3 { top: 30px; left: 590px; }
+
+#cam4 { top: 200px; left: 50px; }
+#cam5 { top: 200px; left: 320px; }
+#cam6 { top: 200px; left: 590px; }
+
+#cam7 { top: 370px; left: 320px; }
+
+/* Líneas estilo FNAF para mapa */
+#mapContainer::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 800px; height: 500px;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(to right, black 2px, transparent 2px),
+    linear-gradient(to bottom, black 2px, transparent 2px);
+  background-size: 270px 170px;
+  background-position: 50px 30px;
+  background-repeat: repeat;
+}
+
+/* Visor cámara grande */
+#camViewer img#fullImage {
+  max-width: 90vw;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 0 20px black;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Botones */
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #222;
+  border: 1px solid white;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #444;
+}
+
+/* Preguntas */
+#questionsContainer {
+  max-width: 600px;
+  width: 100%;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 10px;
+  background: #111;
+  border-radius: 10px;
+}
+
+.question {
+  margin-bottom: 12px;
+  background: #222;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.question p {
+  margin: 0 0 8px 0;
+  font-weight: bold;
+}
+
+.question button {
+  margin-right: 8px;
+  padding: 5px 12px;
+  font-size: 13px;
+}
+
+/* Checkmark verde */
+.checkmark {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+/* Inputs para Resuelve el Misterio */
+#letterSlots {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.slotInput {
+  width: 35px;
+  height: 35px;
+  margin: 0 5px;
+  text-align: center;
+  font-size: 24px;
+  text-transform: uppercase;
+  background: #111;
+  border: 2px solid white;
+  color: white;
+  border-radius: 5px;
+}
+
+#slotNumbers {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.slotNumber {
+  width: 35px;
+  margin: 0 5px;
+  text-align: center;
+  font-size: 14px;
+  color: white;
+  user-select: none;
+}
+
+/* Mensajes error y éxito */
+#mysteryMsg {
+  text-align: center;
+  font-weight: bold;
+  color: #f44336;
+}
+
+/* Popup final */
+#finalPopup img {
+  width: 200px;
+  margin: 15px 0;
+}
+
+/* Responsive */
+@media (max-width: 850px) {
+  #mapContainer {
+    width: 95vw;
+    height: 300px;
+  }
+  .cam {
+    width: 90px;
+    height: 90px;
+  }
+  .cam img {
+    height: 60px;
+  }
+  #finalPopup img {
+    width: 150px;
+  }
+  .glitch-logo {
+    width: 180px;
+  }
+  .glitch-text {
+    font-size: 16px;
+  }
+  #questionsContainer {
+    max-height: 40vh;
+  }
+}
+@media (max-width: 600px) {
+  #mapContainer {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .cam {
+    width: 45%;
+    margin: 5px;
+  }
+
+  #questionsContainer {
+    width: 100%;
+  }
+
+  .loginBox {
+    width: 90%;
+  }
+
+  .popup-content {
+    width: 90%;
+    font-size: 14px;
+  }
+
+  .slotInput {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+  }
+
+  .slotNumber {
+    font-size: 12px;
+  }
+}
