@@ -145,20 +145,22 @@ body {
 
 /* Selector cámaras */
 #mapContainer {
-  position: relative;
-  width: 800px;
-  height: 500px;
-  margin: 20px auto 40px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px;
+  max-width: 800px;
+  width: 100%;
+  margin: 20px auto;
   background: white;
   border: 2px solid white;
   border-radius: 10px;
-  z-index: 1;
   box-shadow: 0 0 15px white;
 }
 
 /* Posiciones cámaras estilo mapa FNAF, blancas y líneas */
 .cam {
-  position: absolute;
   width: 120px;
   height: 120px;
   cursor: pointer;
@@ -186,23 +188,23 @@ body {
   margin: 5px 0 0 0;
 }
 
-/* Posiciones estilo mapa (el mismo orden que antes) */
+/* Eliminar posiciones fijas */
+/*
 #cam1 { top: 30px; left: 50px; }
 #cam2 { top: 30px; left: 320px; }
 #cam3 { top: 30px; left: 590px; }
-
 #cam4 { top: 200px; left: 50px; }
 #cam5 { top: 200px; left: 320px; }
 #cam6 { top: 200px; left: 590px; }
-
 #cam7 { top: 370px; left: 320px; }
+*/
 
-/* Líneas estilo FNAF para mapa */
+/* Líneas estilo FNAF (opcional decorativo) */
 #mapContainer::before {
   content: "";
   position: absolute;
   top: 0; left: 0;
-  width: 800px; height: 500px;
+  width: 100%; height: 100%;
   pointer-events: none;
   z-index: 0;
   background:
@@ -327,42 +329,44 @@ button:hover {
 
 /* Responsive */
 @media (max-width: 850px) {
-  #mapContainer {
-    width: 95vw;
-    height: 300px;
-  }
   .cam {
     width: 90px;
     height: 90px;
   }
+
   .cam img {
     height: 60px;
   }
+
   #finalPopup img {
     width: 150px;
   }
+
   .glitch-logo {
     width: 180px;
   }
+
   .glitch-text {
     font-size: 16px;
   }
+
   #questionsContainer {
     max-height: 40vh;
   }
 }
+
 @media (max-width: 600px) {
-  #mapContainer {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  .cam {
+    width: 100px;
+    height: 100px;
   }
 
-  .cam {
-    width: 45%;
-    margin: 5px;
+  .cam img {
+    height: 60px;
+  }
+
+  .cam p {
+    font-size: 12px;
   }
 
   #questionsContainer {
@@ -387,4 +391,4 @@ button:hover {
   .slotNumber {
     font-size: 12px;
   }
-}
+  }
