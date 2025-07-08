@@ -1,5 +1,5 @@
 // --- Variables globales ---
-const ACCESS_CODE = "02725";  // Cambia aquí el código de acceso real
+const ACCESS_CODE = "OCTO7";  // Cambia aquí el código de acceso real
 const loginContainer = document.getElementById("loginContainer");
 const loginBtn = document.getElementById("loginBtn");
 const accessInput = document.getElementById("accessCode");
